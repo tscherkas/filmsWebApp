@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FilmsBLL.Models
 {
-    class Person
+    public class Person
     {
+        public string ID { get; set; }
         public string name { get; set; }
         public DateTime date { get; set; }
         public IEnumerable<Film> films { get; set; }

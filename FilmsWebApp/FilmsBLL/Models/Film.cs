@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmsBLL.Models
 {
-    class Film
+    public class Film
     {
         public string name { get; set; }
         public DateTime date { get; set; }

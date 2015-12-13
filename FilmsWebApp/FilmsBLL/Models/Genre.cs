@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmsBLL.Models
 {
-    class Genre
+    public class Genre
     {
     }
 }

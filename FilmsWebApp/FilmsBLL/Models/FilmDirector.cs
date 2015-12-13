@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmsBLL.Models
 {
-    class FilmDirector : Person
+    public class FilmDirector : Person
     {
         public IEnumerable<Film> filmsAsDirector { get; set; }
     }
