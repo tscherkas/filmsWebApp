@@ -69,6 +69,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="Posters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ActorsDAL_EF.cs" />
     <Compile Include="sysdiagrams.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +77,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\PagedList.css" />
+    <ProjectReference Include="..\FilmsBLL\FilmsBLL.csproj">
+      <Project>{2713b497-6c7a-4c51-8276-13e0db1b103d}</Project>
+      <Name>FilmsBLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

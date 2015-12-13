@@ -6,15 +6,7 @@ namespace FilmsDAL_EF
     using System.Linq;
     using System.Collections.Generic;
 
-    public interface IFilmModel
-    {
-        System.Collections.Generic.List<Person> getActorsAsList(int start, int size);
-        IQueryable<Person> getActorsIQueryable();
-        Person getActor(string ID);
-        Person createOrUpdateActor(Person p);
-        void deleteActor(string ID);
-    }
-    public partial class FilmModel : DbContext, IFilmModel
+    public partial class FilmModel : DbContext
     {
         public FilmModel()
             : base("data source=DOM;initial catalog=movies;integrated security=True;pooling=False;MultipleActiveResultSets=True;App=EntityFramework\" providerName = \"System.Data.SqlClient")
@@ -75,24 +67,19 @@ namespace FilmsDAL_EF
                   
             return (from p in Person select p).OrderByDescending(p => p.PersonId).Skip(start).Take(size).ToList();
         }
-
-        List<Person> IFilmModel.getActorsAsList(int start, int size)
-        {
-            throw new NotImplementedException();
-        }
         
 
-        IQueryable<Person> IFilmModel.getActorsIQueryable()
+        IQueryable<Person> getActorsIQueryable()
         {
             var ret = (from p in Person select p).OrderByDescending(p => p.PersonId);
             return ret;
         }
 
-        Person IFilmModel.getActor(string ID)
+        Person getActor(string ID)
         {
             return Person.Find(ID);        }
 
-        Person IFilmModel.createOrUpdateActor(Person p)
+        Person createOrUpdateActor(Person p)
         {
             if(p.PersonId != null)
             {
@@ -106,7 +93,7 @@ namespace FilmsDAL_EF
             return p;
         }
 
-        void IFilmModel.deleteActor(string ID)
+        void deleteActor(string ID)
         {
             if(ID!=null)
             {

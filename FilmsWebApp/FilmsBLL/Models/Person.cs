@@ -8,7 +8,7 @@ namespace FilmsBLL.Models
 {
     public class Person
     {
-        public string ID { get; set; }
+        public Guid ID { get; set; }
         public string name { get; set; }
         public DateTime date { get; set; }
         public IEnumerable<Film> films { get; set; }

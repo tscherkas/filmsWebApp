@@ -6,17 +6,18 @@ using System.Web.Mvc;
 using FilmsWebUI.Models;
 using FilmsBLL.Services;
 using PagedList;
+using Ninject;
 
 namespace FilmsWebUI.Controllers
 {
     public class ActorsController : Controller
     {
+        [Inject]
+        public ActorsService actorsService { get; set; }
         // GET: Actors
         public ActionResult Index(int? page)
         {
-            var service = new ActorsService(new FilmsDAL_EF.FilmModel());
-
-            var actors = service.getActors(); 
+            var actors = actorsService.getActorsFromDAL(); 
 
             var pageNumber = page ?? 1; 
             var onePageOfActors = actors.ToPagedList(pageNumber, 25); 
@@ -26,9 +27,9 @@ namespace FilmsWebUI.Controllers
         }
 
         // GET: Actors/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+        public ActionResult Details(Guid id)
+        {            
+            return View(actorsService.getActorFromDAL(id));
         }
 
         // GET: Actors/Create
@@ -39,38 +40,43 @@ namespace FilmsWebUI.Controllers
 
         // POST: Actors/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FilmsBLL.Models.Actor model)
         {
             try
             {
-                // TODO: Add insert logic here
-                return RedirectToAction("Index");
+                if(!ModelState.IsValid)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Details", actorsService.addOrEditActorInDAL(model));
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
         // GET: Actors/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            return View(actorsService.getActorFromDAL(id));
         }
 
         // POST: Actors/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(FilmsBLL.Models.Actor model)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (!ModelState.IsValid)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Details", actorsService.addOrEditActorInDAL(model));
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
