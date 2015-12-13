@@ -19,12 +19,9 @@ namespace FilmsDAL_EF.Services
         {
             if (actor.ID != null&& actor.ID!=new Guid("00000000-0000-0000-0000-000000000000"))
             {
-                var person = new Person
-                {
-                    EnglishName = actor.name,
-                    PersonId = actor.ID
+                var person = model.Person.Find(actor.ID);
+                person.EnglishName = actor.name;
 
-                };
                 model.Entry(person).State = EntityState.Modified;
                 model.SaveChanges();
             }
@@ -32,7 +29,9 @@ namespace FilmsDAL_EF.Services
             {
                 var person = new Person
                 {
-                    EnglishName = actor.name
+                    EnglishName = actor.name,
+                    RussianName = "",
+                    PersonId = Guid.NewGuid()
 
                 };
                 model.Person.Add(person);
@@ -72,12 +71,13 @@ namespace FilmsDAL_EF.Services
                 return null;
         }
 
-        public IQueryable<Actor> getActorsIQueryable()
+        public IQueryable<Actor> getActorsIQueryable(string nameTemplate="")
         {
-            var ret = (from p in model.Person select p).OrderByDescending(p => p.PersonId).Select(
-                p => new Actor { ID = p.PersonId, name = p.EnglishName+" (" + p.RussianName??""+")"}
-                );
-            return ret;
+            var ret = (from p in model.Person select p);
+            ret = ret.Where(p => p.EnglishName.Contains(nameTemplate)||p.RussianName.Contains(nameTemplate)).OrderByDescending(p => p.PersonId);    
+            return ret.Select(
+                p => new Actor { ID = p.PersonId, name = p.EnglishName + " (" + p.RussianName + ")" }
+                ); 
         }
     }
 }

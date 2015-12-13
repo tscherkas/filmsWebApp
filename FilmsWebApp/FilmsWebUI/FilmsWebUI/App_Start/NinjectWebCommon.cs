@@ -61,7 +61,7 @@ namespace FilmsWebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<FilmsBLL.OuterInterfaces.IActorDAL>().To<FilmsDAL_EF.Services.ActorsDAL_EF>();
+            kernel.Bind<FilmsBLL.OuterInterfaces.IActorDAL>().To<FilmsDAL_EF.Services.ActorsDAL_EF>().InSingletonScope();
         }        
     }
 }

@@ -7,13 +7,7 @@
 <!-- import the included stylesheet for some (very basic) default styling 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />-->
 
-<!-- loop through each of your products and display it however you want. we're just printing the name here 
-<h2>List of Products</h2>
-<ul>
-    @foreach (var actor in ViewBag.OnePageOfProducts)
-    {
-        <li>@actor.name</li>
-    }
-</ul>-->
-@Html.Partial("ActorsList",(IPagedList<FilmsBLL.Models.Actor>)ViewBag.OnePageOfProducts)
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))
+@Html.TextBox("CurrentFilter")
+
+@Html.Partial("ActorsList", (IPagedList)ViewBag.OnePageOfProducts)
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))

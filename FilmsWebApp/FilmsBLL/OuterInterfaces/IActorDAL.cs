@@ -9,7 +9,7 @@ namespace FilmsBLL.OuterInterfaces
 {
     public interface IActorDAL
     {
-        IQueryable<Actor> getActorsIQueryable();
+        IQueryable<Actor> getActorsIQueryable(string nameTemplate="");
         Actor getActor(Guid ID);
         Actor createOrUpdateActor(Actor actor);
         void deleteActor(Actor actor);

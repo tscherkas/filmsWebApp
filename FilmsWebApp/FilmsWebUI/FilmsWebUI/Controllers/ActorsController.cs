@@ -14,9 +14,11 @@ namespace FilmsWebUI.Controllers
     {
         [Inject]
         public ActorsService actorsService { get; set; }
-        // GET: Actors
+        public string searchTemplate { get; set; }
+       /* // GET: Actors
         public ActionResult Index(int? page)
         {
+           
             var actors = actorsService.getActorsFromDAL(); 
 
             var pageNumber = page ?? 1; 
@@ -24,8 +26,23 @@ namespace FilmsWebUI.Controllers
 
             ViewBag.OnePageOfProducts = onePageOfActors;
             return View();
-        }
+        }*/
+        public ViewResult Index(string searchString, int? page)
+        {
 
+            if (searchString == null)
+            {
+                searchString = "";
+            }
+
+            ViewBag.SearchString = searchString;
+            var actors = actorsService.getActorsFromDAL(searchString);
+
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+            return View("IndexTest",actors.ToPagedList(pageNumber, pageSize));
+        }
         // GET: Actors/Details/5
         public ActionResult Details(Guid id)
         {            
@@ -80,23 +97,15 @@ namespace FilmsWebUI.Controllers
             }
         }
 
-        // GET: Actors/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Actors/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        
+        public ActionResult Delete(Guid id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                actorsService.deleteActorFromDAL(new FilmsBLL.Models.Actor {ID = id });
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
