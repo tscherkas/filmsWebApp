@@ -67,6 +67,7 @@ namespace FilmsDAL_EF.Services
                 var movie = new Movie
                 {
                     OriginalTitle = film.name,
+                    RussianTitle = "",
                     ReleaseDate = film.date,
                     MovieId = Guid.NewGuid()
                 };
