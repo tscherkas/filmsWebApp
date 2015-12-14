@@ -62,6 +62,7 @@ namespace FilmsWebUI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<FilmsBLL.OuterInterfaces.IActorDAL>().To<FilmsDAL_EF.Services.ActorsDAL_EF>().InSingletonScope();
+            kernel.Bind<FilmsBLL.OuterInterfaces.IGenreDAL>().To<FilmsDAL_EF.Services.GenresDAL_EF>().InSingletonScope();
         }        
     }
 }

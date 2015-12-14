@@ -45,11 +45,7 @@ namespace FilmsDAL_EF.Services
         {
             if(actor.ID != null )
             {
-                var person = new Person
-                {
-                    PersonId = actor.ID
-                };
-                model.Person.Attach(person);
+                var person = model.Person.Find(actor.ID);
                 model.Person.Remove(person);
                 model.SaveChanges();
             }

@@ -66,8 +66,10 @@
     <Compile Include="Models\FilmDirector.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="OuterInterfaces\IGenreDAL.cs" />
     <Compile Include="OuterInterfaces\IActorDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GenreService.cs" />
     <Compile Include="Services\ActorsService.cs" />
     <Compile Include="Services\IFilmRecommendService.cs" />
     <Compile Include="Services\MyFilmRecommendService.cs" />

@@ -154,6 +154,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActorsController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -214,6 +215,13 @@
     <Content Include="Views\Actors\Create.cshtml" />
     <Content Include="Views\Actors\Edit.cshtml" />
     <Content Include="Views\Actors\IndexTest.cshtml" />
+    <Content Include="Views\Actors\Delete.cshtml" />
+    <Content Include="Views\Genres\GenresList.cshtml" />
+    <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Genres\Details.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Edit.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,18 +15,7 @@ namespace FilmsWebUI.Controllers
         [Inject]
         public ActorsService actorsService { get; set; }
         public string searchTemplate { get; set; }
-       /* // GET: Actors
-        public ActionResult Index(int? page)
-        {
-           
-            var actors = actorsService.getActorsFromDAL(); 
-
-            var pageNumber = page ?? 1; 
-            var onePageOfActors = actors.ToPagedList(pageNumber, 25); 
-
-            ViewBag.OnePageOfProducts = onePageOfActors;
-            return View();
-        }*/
+       
         public ViewResult Index(string searchString, int? page)
         {
 
@@ -63,7 +52,7 @@ namespace FilmsWebUI.Controllers
             {
                 if(!ModelState.IsValid)
                 {
-                    return RedirectToAction("Index");
+                    return View(model);
                 }
                 return View("Details", actorsService.addOrEditActorInDAL(model));
             }
@@ -97,16 +86,21 @@ namespace FilmsWebUI.Controllers
             }
         }
 
-        
         public ActionResult Delete(Guid id)
+        {
+            return View(actorsService.getActorFromDAL(id));
+        }
+        [HttpPost]
+        public ActionResult Delete(FilmsBLL.Models.Actor model)
         {
             try
             {
-                actorsService.deleteActorFromDAL(new FilmsBLL.Models.Actor {ID = id });
+                actorsService.deleteActorFromDAL(model);
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
             {
+                ViewBag.Message = "Delete is inpossible.";
                 return View();
             }
         }
