@@ -32,9 +32,10 @@
             @Html.DisplayFor(modelItem => item.date)
         </td>
         <td class="actor-item-controls">
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit","Actors", new { id=item.ID }, new { }) |
+            @Html.ActionLink("Details", "Details", "Actors", new { id = item.ID }, new { }) |
+            @Html.ActionLink("Delete", "Delete", "Actors", new { id = item.ID }, new { }) |
+            @Html.ActionLink("Get Films", "GetFilms", "Actors", new { id = item.ID }, new { })
         </td>
     </tr>
 }

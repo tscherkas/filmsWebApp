@@ -9,6 +9,12 @@
         <th>
             @Html.DisplayNameFor(model => model.date)
         </th>
+        <th>
+            Actors
+        </th>
+        <th>
+            Genres
+        </th>
         <th></th>
     </tr>
 
@@ -21,9 +27,43 @@
             @Html.DisplayFor(modelItem => item.date)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (item.actors != null)
+            {
+                <ul>
+                    @foreach (var actor in item.actors)
+                    {
+                        <li>
+                            @Html.ActionLink(actor.name,"Details", "Actors", new { id = actor.ID }, new { })
+                        </li>
+                    }
+                </ul>
+            }
+        </td>
+        
+        @*
+    <td>
+        @Html.Partial("../Actors/ActorsList", item.actors)
+    </td>*@
+        <td>
+            @if(item.genres!=null)
+            {
+                <ul>
+                    @foreach (var genre in item.genres)
+                    {
+                        <li>
+                            @Html.DisplayFor(genreItem => genre.name)
+                        </li>
+                    }
+                </ul>
+            }
+        </td>
+        <td>
+            <ul>
+                <li>@Html.ActionLink("Edit", "Edit", "Films", new { id = item.ID }, new { })</li>
+                <li>@Html.ActionLink("Details", "Details","Films", new { id = item.ID }, new { }) </li>
+                <li>@Html.ActionLink("Delete", "Delete", "Films", new { id = item.ID }, new { })</li>
+                <li>@Html.ActionLink("Recommend", "Recommend", "Films", new { id = item.ID }, new { })</li>
+            </ul>           
         </td>
     </tr>
 }

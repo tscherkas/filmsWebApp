@@ -104,5 +104,10 @@ namespace FilmsWebUI.Controllers
                 return View();
             }
         }
+        public ActionResult GetFilms(Guid id)
+        {
+            var a = actorsService.getActorWithFilmsFromDAL(id);
+            return View(a);
+        }
     }
 }

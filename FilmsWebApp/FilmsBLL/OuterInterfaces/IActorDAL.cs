@@ -13,5 +13,6 @@ namespace FilmsBLL.OuterInterfaces
         Actor getActor(Guid ID);
         Actor createOrUpdateActor(Actor actor);
         void deleteActor(Actor actor);
+        Actor getActorWithFilmsFromDAL(Guid id);
     }
 }

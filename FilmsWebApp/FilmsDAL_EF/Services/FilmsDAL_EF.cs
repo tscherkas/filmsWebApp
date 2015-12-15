@@ -31,8 +31,13 @@ namespace FilmsDAL_EF.Services
             if(nameTemplate.Length>0)
                 ret = ret.Where(m => m.OriginalTitle.Contains(nameTemplate) || m.RussianTitle.Contains(nameTemplate));
             return ret.OrderByDescending(m => m.MovieId).Select(
-                m => new Film {ID= m.MovieId, date = (DateTime)m.ReleaseDate, name = m.OriginalTitle + " (" + m.RussianTitle + ")" }
-                );
+                m => new Film {
+                    ID = m.MovieId,
+                    date = (DateTime)m.ReleaseDate,
+                    name = m.OriginalTitle + " (" + m.RussianTitle + ")",
+                    genres = m.Genre.Select( g => new FilmsBLL.Models.Genre { ID = g.GenreId, name = g.Name}),
+                    actors = m.MovieToPerson.Where(m_to_p => m_to_p.DepartmentId==57).Select( a => new FilmsBLL.Models.Actor { ID = a.PersonId, name = a.Person.EnglishName+" ("+a.Person.RussianName+")"})
+                });
         }
 
         
