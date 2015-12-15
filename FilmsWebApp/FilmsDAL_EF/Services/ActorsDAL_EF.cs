@@ -87,16 +87,7 @@ namespace FilmsDAL_EF.Services
                     ID = person.PersonId,
                     name = person.EnglishName,
                     films = person.MovieToPerson.Select(m_to_p => new Film {
-                        name = m_to_p.Movie.OriginalTitle,
-                        ID = m_to_p.MovieId,
-                        date = (DateTime)m_to_p.Movie.ReleaseDate,
-                        genres = m_to_p.Movie.Genre.Select(g => new FilmsBLL.Models.Genre { ID = g.GenreId, name = g.Name }),
-                        actors = m_to_p.Movie.MovieToPerson.Where(m_to_p2 => m_to_p2.DepartmentId == 57)
-                        .Select(a => new FilmsBLL.Models.Actor
-                            {
-                                ID = a.PersonId,
-                                name = a.Person.EnglishName + " (" + a.Person.RussianName + ")"
-                        })
+                        ID = m_to_p.MovieId,                        
                     })
 
                 };

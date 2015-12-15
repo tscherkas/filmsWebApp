@@ -107,7 +107,7 @@ namespace FilmsWebUI.Controllers
         {
             var film = filmsService.getFilm(id);
             var result = s.recommend(new List<FilmsBLL.Models.Film> { film }, new List<FilmsBLL.Models.Film>(), 10);
-            return View(result);
+            return View(result.Select(item => filmsService.getFilm(item.ID)));
         }
     }
 }
