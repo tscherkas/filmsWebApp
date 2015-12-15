@@ -13,6 +13,8 @@ namespace FilmsWebUI.Controllers
     {
         [Inject]
         public FilmService filmsService { get; set; }
+        [Inject]
+        public IFilmRecommendService s { get; set; }
 
         public ViewResult Index(string searchString, int? page)
         {
@@ -100,6 +102,12 @@ namespace FilmsWebUI.Controllers
                 ViewBag.Message = "Delete is inpossible.";
                 return View(model);
             }
+        }
+        public ActionResult Recommend(Guid id)
+        {
+            var film = filmsService.getFilm(id);
+            var result = s.recommend(new List<FilmsBLL.Models.Film> { film }, new List<FilmsBLL.Models.Film>(), 10);
+            return View(result);
         }
     }
 }

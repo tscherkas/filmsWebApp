@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FilmsBLL.Models;
 namespace FilmsBLL.Services
 {
-    interface IFilmRecommendService
+    public interface IFilmRecommendService
     {
         ICollection<Film> recommend(ICollection<Film> precondition,ICollection<Film> yetRecommended, int maximumNumber);
     }

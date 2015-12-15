@@ -229,6 +229,7 @@
     <Content Include="Views\Films\Index.cshtml" />
     <Content Include="Views\Films\FilmsList.cshtml" />
     <Content Include="Views\Actors\GetFilms.cshtml" />
+    <Content Include="Views\Films\Recommend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -64,6 +64,8 @@ namespace FilmsWebUI.App_Start
             kernel.Bind<FilmsBLL.OuterInterfaces.IActorDAL>().To<FilmsDAL_EF.Services.ActorsDAL_EF>().InSingletonScope();
             kernel.Bind<FilmsBLL.OuterInterfaces.IGenreDAL>().To<FilmsDAL_EF.Services.GenresDAL_EF>().InSingletonScope();
             kernel.Bind<FilmsBLL.OuterInterfaces.IFilmDAL>().To<FilmsDAL_EF.Services.FilmsDAL_EF>().InSingletonScope();
+            //kernel.Bind<FilmsBLL.Services.ActorsService>().To<FilmsBLL.Services.ActorsService>().InSingletonScope();
+            kernel.Bind<FilmsBLL.Services.IFilmRecommendService>().To<FilmsBLL.Services.MyFilmRecommendService>().InSingletonScope();
         }        
     }
 }

@@ -49,7 +49,9 @@ namespace FilmsDAL_EF.Services
                 return new Film {
                     ID = movie.MovieId,
                     name = movie.OriginalTitle,
-                    date = (DateTime)movie.ReleaseDate
+                    date = (DateTime)movie.ReleaseDate,
+                    genres = movie.Genre.Select(g => new FilmsBLL.Models.Genre { ID = g.GenreId, name = g.Name }),
+                    actors = movie.MovieToPerson.Where(m_to_p => m_to_p.DepartmentId == 57).Select(a => new FilmsBLL.Models.Actor { ID = a.PersonId, name = a.Person.EnglishName + " (" + a.Person.RussianName + ")" })
                 };
             }
             else
