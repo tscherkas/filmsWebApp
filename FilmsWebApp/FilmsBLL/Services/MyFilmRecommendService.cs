@@ -30,7 +30,7 @@ namespace FilmsBLL.Services
                     if (tmp_actor != null)
                     {
                         tmp_actor = actorsservice.getActorWithFilmsFromDAL(tmp_actor.ID);
-                        if (tmp_actor != null)
+                        if (tmp_actor != null&&tmp_actor.films.Count()>0)
                         { 
                             var rec_film = tmp_actor.films.ElementAt(new Random().Next(0, tmp_actor.films.Count() - 1));
                             if (!yetRecommended.Contains(rec_film) && !retList.Contains(rec_film))
@@ -39,7 +39,7 @@ namespace FilmsBLL.Services
                     }
                 }
             }
-            return retList.GroupBy(film => film.ID).Select(group => group.First()).ToList();
+            return retList;
         }
     }
 }
