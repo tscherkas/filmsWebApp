@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FilmsBLL.Models.Actor>
+<!--Insert to hide controls
+    
+    <style>
+        .actor-item-controls
+        {
+            display: none;
+        }
+    </style>
+-->
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th class="actor-item-controls"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td class="actor-item-controls">
+            @Html.ActionLink("Edit", "Edit","Actors", new { id=item.ID }, new { }) |
+            @Html.ActionLink("Details", "Details", "Actors", new { id = item.ID }, new { }) |
+            @Html.ActionLink("Delete", "Delete", "Actors", new { id = item.ID }, new { }) |
+            @Html.ActionLink("Get Films", "GetFilms", "Actors", new { id = item.ID }, new { })
+        </td>
+    </tr>
+}
+
+</table>

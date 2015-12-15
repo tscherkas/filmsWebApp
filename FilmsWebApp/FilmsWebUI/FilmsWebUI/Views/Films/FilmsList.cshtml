@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FilmsBLL.Models.Film>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            Actors
+        </th>
+        <th>
+            Genres
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @if (item.actors != null)
+            {
+                <ul>
+                    @foreach (var actor in item.actors)
+                    {
+                        <li>
+                            @Html.ActionLink(actor.name,"Details", "Actors", new { id = actor.ID }, new { })
+                        </li>
+                    }
+                </ul>
+            }
+        </td>
+        
+        @*
+    <td>
+        @Html.Partial("../Actors/ActorsList", item.actors)
+    </td>*@
+        <td>
+            @if(item.genres!=null)
+            {
+                <ul>
+                    @foreach (var genre in item.genres)
+                    {
+                        <li>
+                            @Html.DisplayFor(genreItem => genre.name)
+                        </li>
+                    }
+                </ul>
+            }
+        </td>
+        <td>
+            <ul>
+                <li>@Html.ActionLink("Edit", "Edit", "Films", new { id = item.ID }, new { })</li>
+                <li>@Html.ActionLink("Details", "Details","Films", new { id = item.ID }, new { }) </li>
+                <li>@Html.ActionLink("Delete", "Delete", "Films", new { id = item.ID }, new { })</li>
+                <li>@Html.ActionLink("Recommend", "Recommend", "Films", new { id = item.ID }, new { })</li>
+            </ul>           
+        </td>
+    </tr>
+}
+
+</table>

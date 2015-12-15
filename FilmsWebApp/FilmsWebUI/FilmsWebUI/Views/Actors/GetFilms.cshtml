@@ -1,0 +1,37 @@
+﻿@model FilmsBLL.Models.Actor
+
+@{
+    ViewBag.Title = "GetFilms";
+}
+
+
+<div>
+    <h4>Films of selected actor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+    </dl>
+</div>
+@if (Model.films != null && Model.films.Count() > 0)
+{
+    @Html.Partial("../Films/FilmsList", Model.films)
+}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
